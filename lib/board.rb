@@ -1,7 +1,7 @@
 class Board
   attr_reader :board_state
   def initialize
-    @board_state = { A1: 0, A2: 0 }
+    @board_state = { A1: 0, A2: 0, B1: 0, B2: 0 }
   end
 
   def place(ship, position)
@@ -11,16 +11,12 @@ class Board
   end
 
   def empty?
-    @board_state == { A1: 0, A2: 0 }
+    @board_state == { A1: 0, A2: 0, B1: 0, B2: 0 }
   end
 
   def hit(position)
     fail 'You hit outside!' unless @board_state.key?(position)
     @board_state[position] != 0 ? @board_state[position] = "hit" : @board_state[position] = "miss"
-    #   @board_state[position] = "hit"
-    # else
-    #   @board_state[position] = "miss"
-    # end
   end
 
   def hits
