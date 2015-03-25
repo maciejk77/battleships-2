@@ -2,17 +2,19 @@ require 'board'
 
 describe Board do
   it 'when created, the board is empty' do
-    board = Board.new
-    expect(board.empty?).to be true
+    expect(subject.empty?).to be true
   end
   it 'when hit outside the board returns an error' do
-    board = Board.new
-    expect { board.hit(:D4) }.to raise_error "You hit outside!"
+    expect { subject.hit(:D4) }.to raise_error "You hit outside!"
   end
   it 'throws an error when ships overlap' do
-    board = Board.new
-    board.place(:ship, :A2) 
-    expect { board.place(:ship, :A2) }.to raise_error "There is a ship here already"
+    subject.place(:ship, :A2) 
+    expect { subject.place(:ship, :A2) }.to raise_error "There is a ship here already"
+  end
+  it 'it can return the number of hits' do
+    subject.place(:ship, :A1)
+    subject.hit(:A1)
+    expect(subject.hits).to eq 1
   end
 end
 

@@ -16,6 +16,20 @@ class Board
 
   def hit(position)
     fail 'You hit outside!' unless @board_state.key?(position)
-    @board_state[position] = 1
+    @board_state[position] != 0 ? @board_state[position] = "hit" : @board_state[position] = "miss"
+    #   @board_state[position] = "hit"
+    # else
+    #   @board_state[position] = "miss"
+    # end
+  end
+
+  def hits
+    hits_hash = @board_state.select{ |key,value| value == "hit" }
+    hits_hash.count
+  end
+
+  def misses
+    misses_hash = @board_state.select { |key, value| value == "miss" }
+    misses_hash.count
   end
 end
