@@ -5,6 +5,8 @@ class Board
   end
 
   def place(ship, position)
+    fail 'Ship placed outside board' unless @board_state.key?(position)
+    fail 'There is a ship here already' unless @board_state[position] == 0
     @board_state[position] = ship
   end
 
