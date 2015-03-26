@@ -16,11 +16,37 @@ feature 'Player can place a ship on the board' do
     expect { board.place(ship, :D4) }.to raise_error 'Ship placed outside board'
   end
 
-  scenario 'a ship can take up 2 positions on the board' do
+  xscenario 'error is raised if second part of ship placed outside board' do
+    expect { board.place(ship, :A2) }.to raise_error 'Ship placed outside board'
+  end
+
+  scenario 'a ship can take up 2 positions on the board to the right' do
     submarine = Submarine.new
     board.place(submarine, :A1)
     expect(board.board_state).to eq ({ A1: submarine, A2: submarine, B1: 0, B2: 0 })
   end
+
+  scenario 'a ship can take up 2 positions on the board to the left' do
+    submarine = Submarine.new
+    board.place(submarine, :A2, 3)
+    expect(board.board_state).to eq ({ A1: submarine, A2: submarine, B1: 0, B2: 0 })
+  end
+
+  
+  scenario 'a ship can take up 2 positions on the board going up' do
+    submarine = Submarine.new
+    board.place(submarine, :B1, 0)
+    expect(board.board_state).to eq ({ A1: submarine, A2: 0, B1: submarine, B2: 0 })
+  end
+
+
+
+  scenario 'a ship can take up 2 positions on the board going down' do
+    submarine = Submarine.new
+    board.place(submarine, :A1, 2)
+    expect(board.board_state).to eq ({ A1: submarine, A2: 0, B1: submarine, B2: 0 })
+  end
+
 end
 
 feature 'Player can hit the board' do

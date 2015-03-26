@@ -16,5 +16,13 @@ describe Board do
     subject.hit(:A1)
     expect(subject.hits).to eq 1
   end
-end
 
+  it 'item can take up to 2 cells on the board' do
+    subject.place(:ship, :A1)
+    expect(subject.board_state).to eq ({ A1: :ship, A2: :ship, B1: 0, B2: 0 })
+  end
+
+  xit 'throws an error when second (or more) part of ship is off the board' do
+    expect { subject.place(:ship, :A2) }.to raise_error 'Ship placed outside board'
+  end
+end
