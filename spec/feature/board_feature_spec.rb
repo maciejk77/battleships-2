@@ -9,7 +9,7 @@ feature 'Player can place a ship on the board' do
 
   scenario 'it places a ship on any cell of the board' do
     board.place(ship, :A2)
-    expect(board.board_state).to eq ({ A1: 0, A2: ship, B1: 0, B2: 0 })
+    expect(board.board_state).to eq(A1: 0, A2: ship, B1: 0, B2: 0)
   end
 
   scenario 'error is raised if placed outside board' do
@@ -23,26 +23,25 @@ feature 'Player can place a ship on the board' do
   scenario 'a ship can take up 2 positions on the board to the right' do
     submarine = Submarine.new
     board.place(submarine, :A1)
-    expect(board.board_state).to eq ({ A1: submarine, A2: submarine, B1: 0, B2: 0 })
+    expect(board.board_state).to eq(A1: submarine, A2: submarine, B1: 0, B2: 0)
   end
 
   scenario 'a ship can take up 2 positions on the board to the left' do
     submarine = Submarine.new
     board.place(submarine, :A2, 3)
-    expect(board.board_state).to eq ({ A1: submarine, A2: submarine, B1: 0, B2: 0 })
+    expect(board.board_state).to eq(A1: submarine, A2: submarine, B1: 0, B2: 0)
   end
 
-  
   scenario 'a ship can take up 2 positions on the board going up' do
     submarine = Submarine.new
     board.place(submarine, :B1, 0)
-    expect(board.board_state).to eq ({ A1: submarine, A2: 0, B1: submarine, B2: 0 })
+    expect(board.board_state).to eq(A1: submarine, A2: 0, B1: submarine, B2: 0)
   end
 
   scenario 'a ship can take up 2 positions on the board going down' do
     submarine = Submarine.new
     board.place(submarine, :A1, 2)
-    expect(board.board_state).to eq ({ A1: submarine, A2: 0, B1: submarine, B2: 0 })
+    expect(board.board_state).to eq(A1: submarine, A2: 0, B1: submarine, B2: 0)
   end
 end
 
@@ -50,7 +49,7 @@ feature 'Player can hit the board' do
   scenario 'it hits the board and changes the state' do
     board = Board.new
     board.hit(:A2)
-    expect(board.board_state).to eq ({ A1: 0, A2: "miss", B1: 0, B2: 0 })
+    expect(board.board_state).to eq(A1: 0, A2: 'miss', B1: 0, B2: 0)
   end
 end
 
@@ -62,7 +61,7 @@ feature 'Player can see their hits and misses' do
     board.place(ship, :A1)
     board.hit(:A1)
     board.hit(:A2)
-    expect(board.board_state).to eq ({ A1: "hit", A2: "miss", B1: 0, B2: 0 })
+    expect(board.board_state).to eq(A1: 'hit', A2: 'miss', B1: 0, B2: 0)
   end
 
   scenario 'it returns number of hits' do
