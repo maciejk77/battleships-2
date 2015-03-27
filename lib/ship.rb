@@ -12,4 +12,3 @@ class Ship
   #   @size = 2
   # end
 end
-

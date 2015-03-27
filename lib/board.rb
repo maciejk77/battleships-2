@@ -4,17 +4,17 @@ class Board
     @board_state = { A1: 0, A2: 0, B1: 0, B2: 0 }
   end
 
-  def place(ship, position, direction=1)
+  def place(ship, position, direction = 1)
     fail 'Ship placed outside board' unless @board_state.key?(position) # position_check(position, ship) 
     fail 'There is a ship here already' unless @board_state[position] == 0
     @board_state[position] = ship
     next_cell(ship, position, direction) if ship.size > 1
   end
-  
+
   def next_cell(ship, position, direction)
     case direction
     when 0
-      letter = (position.to_s.split("")[0].ord-1).chr
+      letter = (position.to_s.split("")[0].ord - 1).chr
       number = position.to_s.split("")[1]
       place_new_position(letter, number, ship)
 
@@ -31,7 +31,7 @@ class Board
       place_new_position(letter, number, ship)
 
     when 3
-      number = (position.to_s.split("")[1].ord-1).chr
+      number = (position.to_s.split("")[1].ord - 1).chr
       letter = position.to_s.split("")[0]
       place_new_position(letter, number, ship)
     end
@@ -43,9 +43,8 @@ class Board
     @board_state[new_symbol] = ship
   end
 
-
   # def position_check(position, ship)
-    
+
   #   next_position = position.next
   #   @board_state.key?(next_position)
   # end

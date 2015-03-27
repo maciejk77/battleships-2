@@ -8,7 +8,7 @@ describe Board do
     expect { subject.hit(:D4) }.to raise_error "You hit outside!"
   end
   it 'throws an error when ships overlap' do
-    subject.place(:ship, :A2) 
+    subject.place(:ship, :A2)
     expect { subject.place(:ship, :A2) }.to raise_error "There is a ship here already"
   end
   it 'it can return the number of hits' do

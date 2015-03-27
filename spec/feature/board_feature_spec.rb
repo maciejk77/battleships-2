@@ -4,8 +4,8 @@ require 'board'
 require 'submarine'
 
 feature 'Player can place a ship on the board' do
-  let(:ship) {Ship.new}
-  let(:board) {Board.new}
+  let(:ship) { Ship.new }
+  let(:board) { Board.new }
 
   scenario 'it places a ship on any cell of the board' do
     board.place(ship, :A2)
@@ -39,14 +39,11 @@ feature 'Player can place a ship on the board' do
     expect(board.board_state).to eq ({ A1: submarine, A2: 0, B1: submarine, B2: 0 })
   end
 
-
-
   scenario 'a ship can take up 2 positions on the board going down' do
     submarine = Submarine.new
     board.place(submarine, :A1, 2)
     expect(board.board_state).to eq ({ A1: submarine, A2: 0, B1: submarine, B2: 0 })
   end
-
 end
 
 feature 'Player can hit the board' do
@@ -58,8 +55,8 @@ feature 'Player can hit the board' do
 end
 
 feature 'Player can see their hits and misses' do
-  let(:ship) {Ship.new}
-  let(:board) {Board.new}
+  let(:ship) { Ship.new }
+  let(:board) { Board.new }
 
   scenario 'it returns all hits and misses' do
     board.place(ship, :A1)
